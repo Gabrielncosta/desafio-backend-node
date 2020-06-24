@@ -26,6 +26,7 @@ class ProductController {
   }
 
   async show ({ params }) {
+    console.log(params)
     const product = await Product.findOrFail(params.id)
 
     return product

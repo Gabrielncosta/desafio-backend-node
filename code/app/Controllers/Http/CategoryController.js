@@ -5,8 +5,14 @@ const Product = use('App/Models/Product')
 
 class CategoryController {
   async index () {
-    const categories = await Category.all()
+    /*     const categories = await Category.all()
 
+    categories.load('products')
+
+    return categories
+ */
+
+    const categories = await Category.query().with('products').fetch()
     return categories
   }
 

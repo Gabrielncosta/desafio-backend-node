@@ -5,7 +5,8 @@ const Helpers = use('Helpers')
 
 class FileController {
   async show ({ params, response }) {
-    const file = await File.findOrFail(params.id)
+    console.log(params)
+    const file = await File.firstOrFail(params)
 
     return response.download(Helpers.tmpPath(`uploads/${file.file}`))
   }
