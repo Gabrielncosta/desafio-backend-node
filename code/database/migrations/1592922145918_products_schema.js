@@ -8,16 +8,25 @@ class ProductsSchema extends Schema {
     this.create('products', (table) => {
       table.increments()
       table
-        .integer('categories_id')
+        .integer('category_id')
         .unsigned()
         .notNullable()
         .references('id')
         .inTable('categories')
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
+      table
+        .integer('image_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('files')
+        .onUpdate('')
+        .onDelete('SET NULL')
+      table.integer('stock_balance').notNullable()
+      table.string('name', 45).notNullable()
+      table.integer('price').notNullable()
       table.timestamps()
-      table.string('name').notNullable()
-      table.integer('stock_balance')
     })
   }
 
