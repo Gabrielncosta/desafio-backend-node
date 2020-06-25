@@ -4,6 +4,12 @@
 const Model = use('Model')
 
 class SalesProduct extends Model {
+  static boot () {
+    super.boot()
+
+    this.addHook('afterSave', 'SalesProductHook.createPurchase')
+  }
+
   sale () {
     return this.belongsTo('App/Models/Sale')
   }

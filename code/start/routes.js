@@ -10,6 +10,7 @@ Route.post('sessions', 'SessionController.store')
 Route.post('passwords', 'ForgotPasswordController.store')
 Route.put('passwords', 'ForgotPasswordController.update')
 
+Route.get('/files/', 'FileController.index')
 Route.get('/files/:id', 'FileController.show')
 
 Route.group(() => {
@@ -18,6 +19,8 @@ Route.group(() => {
   Route.resource('category', 'CategoryController').apiOnly()
   Route.resource('category.products', 'ProductController').apiOnly()
   Route.resource('sales', 'SaleController').apiOnly()
+  Route.resource('sales.products', 'SalesProductController').apiOnly()
 }).middleware(['auth'])
 
 Route.resource('permissions', 'PermissionController').apiOnly().middleware('auth')
+Route.resource('roles', 'RoleController').apiOnly().middleware('auth')

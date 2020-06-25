@@ -2,11 +2,10 @@
 
 const Sale = use('App/Models/Sale')
 const SalesProduct = use('App/Models/SalesProduct')
-const Product = use('App/Models/Product')
 
 class SaleController {
-  async index () {
-    const sales = await SalesProduct.query().with('product').fetch()
+  async index ({ auth }) {
+    const sales = await Sale.query().with('salesProduct').fetch()
 
     return sales
   }
@@ -14,44 +13,27 @@ class SaleController {
   async store ({ request, response, auth }) {
     try {
       const data = request.only(['product_id', 'total_price', 'quantity'])
-
       const sale = await Sale.create({ user_id: auth.user.id })
-
-      const product = await Product.findByOrFail('id', data.product_id)
-
-      product.stock_balance -= data.quantity
 
       const salesProduct = await SalesProduct.create(
         { ...data, sales_id: sale.id })
 
-      await sale.save()
-      await product.save()
       await salesProduct.save()
+      await sale.save()
 
-      return product
+      return [sale, salesProduct]
     } catch (err) {
-      return response.status(err.status).send({ error: { message: 'A compra falhou, verfique seu' } })
+      return response.send({ error: { message: 'A compra falhou, verfique seu' + err } })
     }
   }
 
-  async show ({ params, request, response, view }) {
+  async show ({ auth }) {
+    const salesData = await Sale.query().fetch()
+    return salesData
   }
 
-  async update ({ params, request, response }) {
-  }
-
-  async destroy ({ params, request, response }) {
+  async destroy ({ params }) {
     const sale = await Sale.findOrFail(params.id)
-
-    const products = SalesProduct.query().where('sales_id', params.id)
-    const productId = await products.pluck('product_id')
-    const productQuantity = await products.pluck('quantity')
-
-    const product = await Product.findByOrFail('id', productId[0])
-
-    product.stock_balance += productQuantity[0]
-
-    await product.save()
 
     await sale.delete()
   }

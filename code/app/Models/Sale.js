@@ -1,14 +1,18 @@
 'use strict'
-
-/** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model')
 
 class Sale extends Model {
+  static boot () {
+    super.boot()
+
+    this.addHook('beforeDelete', 'SaleHook.cancelPurchase')
+  }
+
   user () {
     return this.belongsTo('App/Models/User')
   }
 
-  sale_product () {
+  salesProduct () {
     return this.hasMany('App/Models/SalesProduct')
   }
 }

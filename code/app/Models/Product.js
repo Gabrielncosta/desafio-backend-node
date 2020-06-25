@@ -11,6 +11,10 @@ class Product extends Model {
   file () {
     return this.belongsTo('App/Models/File')
   }
+
+  salesProduct () {
+    return this.belongsTo('App/Models/SalesProduct')
+  }
 }
 
 module.exports = Product
