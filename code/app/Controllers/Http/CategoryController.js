@@ -5,14 +5,8 @@ const Product = use('App/Models/Product')
 
 class CategoryController {
   async index () {
-    /*     const categories = await Category.all()
-
-    categories.load('products')
-
-    return categories
- */
-
     const categories = await Category.query().with('products').fetch()
+
     return categories
   }
 
@@ -50,7 +44,6 @@ class CategoryController {
     const product = await products.pluck('category_id')
 
     if (!product.length) {
-      console.log('delete')
       await category.delete()
     } else {
       return response.send({ error: { message: 'Uma categoria com produtos não pode ser excluida' } })

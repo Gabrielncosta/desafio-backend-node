@@ -19,3 +19,5 @@ Route.group(() => {
   Route.resource('category.products', 'ProductController').apiOnly()
   Route.resource('sales', 'SaleController').apiOnly()
 }).middleware(['auth'])
+
+Route.resource('permissions', 'PermissionController').apiOnly().middleware('auth')

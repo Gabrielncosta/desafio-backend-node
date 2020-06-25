@@ -1,6 +1,7 @@
 'use strict'
 
 const Product = use('App/Models/Product')
+const SalesProduct = use('App/Models/SalesProduct')
 
 class ProductController {
   async index ({ params }) {
@@ -50,10 +51,16 @@ class ProductController {
     return product
   }
 
-  async destroy ({ params }) {
-    const product = await Product.findOrFail(params.id)
+  async destroy ({ params, response }) {
+    try {
+      const product = await Product.findOrFail(params.id)
 
-    await product.delete()
+      const salesProduct = SalesProduct.query().where('product_id', params.id)
+
+      await product.delete()
+    } catch (err) {
+      return response.send({ error: { message: 'Um produto com vendas em andamento não pode ser excluido' } })
+    }
   }
 }
 

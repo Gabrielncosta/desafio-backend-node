@@ -5,7 +5,7 @@ const SalesProduct = use('App/Models/SalesProduct')
 const Product = use('App/Models/Product')
 
 class SaleController {
-  async index ({ request, response, view }) {
+  async index () {
     const sales = await SalesProduct.query().with('product').fetch()
 
     return sales
@@ -41,6 +41,19 @@ class SaleController {
   }
 
   async destroy ({ params, request, response }) {
+    const sale = await Sale.findOrFail(params.id)
+
+    const products = SalesProduct.query().where('sales_id', params.id)
+    const productId = await products.pluck('product_id')
+    const productQuantity = await products.pluck('quantity')
+
+    const product = await Product.findByOrFail('id', productId[0])
+
+    product.stock_balance += productQuantity[0]
+
+    await product.save()
+
+    await sale.delete()
   }
 }
 
