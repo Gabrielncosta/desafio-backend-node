@@ -1,71 +1,41 @@
 # Desafio BackEnd - NodeJS - OW Interactive 2020
+ 
+### Endpoints documentation
 
-## Sobre a OW Interactive
+[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=OwInteractiveEndpointsDocumentation&uri=https%3A%2F%2Fraw.githubusercontent.com%2FGabrielncosta%2Fdesafio-backend-node%2Fmaster%2Fcode%2FInsomniaExport.json)
 
-Fazemos parte do universo digital, focada em criar e desenvolver experiências interativas, integrando planejamento, criatividade e tecnologia. Conheça mais sobre nós em: [OW Interactive - Quem somos](http://www.owinteractive.com/quem-somos/).
+## Getting Started
 
-## Pré-requisitos
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-- Javascript (ES6+);
-- Banco de dados MariaDB, MySQL
-- Servidor Nginx
-- Conhecimentos sobre REST;
-- Conhecimentos de Git.
+### Install API
 
-## Desafio
+```
+git clone https://github.com/Gabrielncosta/desafio-backend-node
 
-### Etapa 1 - Cadastro de Usuarios
+cd code/backend
 
-- Implementar endpoints para cadastro, edição e exclusão de usuarios.
-- Implementar endpoint que liste todos os usuarios com possibilidade de busca por palavra chave (buscar no nome ou email)
-- Implementar endpoints de login e logout.
-- Implementar recuperação de senha por e-mail.
+npm i -g @adonisjs/cli
 
-### Etapa 2 - Cadastro de Categorias/Produtos
+npm install
 
-- Implementar endpoints para cadastro, edição e exclusão de categorias.
-- Implementar endpoint para listagem de categorias e os produtos dessas categorias com possibilidade de busca pelo nome da categoria ou de um produto que pertença a ela.
-- Implementar endpoints para cadastro, edição e exclusão de produtos.
-- Implementar endpoint para listagem de todos os produtos
-- Implementar endpoint para adicionar ou remover saldo no estoque do produto
-- Todo produto cadastrado precisa obrigatoriamente pertencer a uma categoria.
-- Um categoria que possuir produtos não pode ser excluida.
+run npm i --save {your database name: pg | mysql | sqlite3}
 
-### Etapa 3 - Cadastro/Cancelamento de Vendas
+configure your .env file using .env.example as an example
 
-- Implementar endpoints para realizações de pedidos de venda
-- Toda venda cadastrada deve subtrair a quantidade comprada do produto em seu estoque
-- Implementar endpoint para cancelamento de pedidos de venda
-- Ao cancelar um pedido o estoque do produto deve ser devolvido
-- Um produto com pedido de venda não pode ser excluido.
-- Listar todos os pedidos de venda trazendo todos os produtos e o total da venda com filtro por data de inicio e fim
+adonis migration:run
 
-### Etapa 4 - Autorização de usuários.
+adonis serve --dev
 
-- Criar usuarios de dois tipos, Administradores e Clientes.
-- Os usuarios Administradores tem acesso a todos os endpoints
-- Os usuarios Clientes tem acesso a listagem de produtos e categorias
-- Os usuarios Clientes não podem cadastrar, alterar ou excluir categorias e produtos
-- Os usuarios Clientes podem fazer e cancelar vendas
-- Ao listar as vendas logado como usuario exibir apenas as que foram feitas por ele
+```
+### Install Front-end
 
-### Etapa 5 - Cliente para integração.
+``` 
 
-- Criar uma aplicação vue para integração dos dados
-- Criar uma tela para cadastro, login, cadastro de categoria, de produtos e de venda
-- Não é necessário criar um layout especifico pode usar um framework para agilizar (ex: bootstrap)
+cd code/frontend
 
-## Diferencial
+npm install
 
-- Documentação dos endpoints
-- Uso de Query Scopes e Hooks do AdonisJS
+npm run serve
 
-## Conclusão
-
-- Usar javascript ES6+
-- Usar o AdonisJS (adonisjs.com)
-- Validar todos os cadastros (min/max caracteres, tipos string/number, required, etc)
-
-## Conclusão
-
-Crie um fork e submeta ao Github o seu desafio. Após isso envie um e-mail para [letsrock@owinteractive.com](mailto:letsrock@owinteractive.com), com o assunto [DESAFIO FRONT-END] com o link para o seu desafio. Obrigado por participar e boa sorte =)
+```
