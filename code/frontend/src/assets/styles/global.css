@@ -69,8 +69,8 @@ input {
   font: inherit;
   border: unset;
   padding: 12px 0px;
-
-  max-width: 50vw;
+  margin-bottom: 20px;
+  max-width: 50vw; 
   width: 30vh;
   border-bottom: 1px solid black;
   background: white;
