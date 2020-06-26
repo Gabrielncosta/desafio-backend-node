@@ -22,7 +22,7 @@ export default {
   align-content: center;
   background: rgb(0, 206, 206);;
   width: 100vw;
-  height: 100%;
+  height: 10vh;
   padding: 20px 0px;
 }
 

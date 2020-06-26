@@ -34,9 +34,7 @@ export default {
         const token = response.data.token;
 
         sessionStorage.setItem("token", token);
-        console.log(`Seu token é ${token}`);
-        console.log("Logado com sucesso");
-        router.push("admin");
+        router.push("/admin/criar-categorias");
       } catch (error) {
         console.log("Erro ao logar no servidor");
       }

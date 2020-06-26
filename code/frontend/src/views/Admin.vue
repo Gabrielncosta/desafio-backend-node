@@ -1,7 +1,10 @@
 <template>
+<div>
+  <NavBar />
   <div class="index__layout">
     <aside class="index__layout-aside">
       <ul class="aside__menu">
+  
         <li class="aside__menu-item">
           <span class="aside__menu-listTitle">
             Categoria
@@ -38,18 +41,25 @@
 
     <main class="index__layout-main">
       <div class="index__layout-main--routerWrapper">
+        
         <!-- ROTA ANINHADA -->
         <router-view />
       </div>
     </main>
   </div>
+</div>
 </template>
 
 <script>
+import NavBar from '@/components/NavBar'
+
 export default {
-  name: "Home",
-  components: {},
+  name: "Admin",
+  components: {
+    NavBar
+  },
 };
+
 </script>
 
 <style scoped>
@@ -58,7 +68,7 @@ a {
   font-size: 1.2em;
 }
 .index__layout {
-  height: 100vh;
+  height: 90vh;
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr;

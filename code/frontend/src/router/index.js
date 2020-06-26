@@ -7,7 +7,6 @@ import Recover from '@/views/Recover.vue';
 import AdminView from '@/views/Admin.vue';
 import Store from '@/views/Store.vue';
 
-import NavBar from '@/components/NavBar'
 import CriarCategoria from "@/components/CreateCategory";
 import ListarProduto from "@/components/ProductsList"
 import ListarCategorias from "@/components/ListCategories";
@@ -40,11 +39,6 @@ const routes = [
     component: AdminView,
     children: [
       {
-        path: '',
-        name: 'navbar',
-        component: NavBar,
-      },
-      {
         path: "criar-categorias",
         component: CriarCategoria,
       },
@@ -70,13 +64,6 @@ const routes = [
     path: '/store',
     name: 'Store',
     component: Store,
-    children: [
-      {
-        path: '',
-        name: 'navbar',
-        component: NavBar,
-      },
-    ]
   }
 ];
 

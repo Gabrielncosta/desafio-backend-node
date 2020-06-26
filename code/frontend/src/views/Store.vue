@@ -1,5 +1,6 @@
 <template>
   <div class="store">
+    <NavBar />
     <el-container>
       <el-main>
         <div class="product-container">
@@ -24,10 +25,14 @@
 <script>
 import Product from '@/components/Product.vue';
 import api from '@/services/api';
+import NavBar from '@/components/NavBar';
+
 export default {
+
   name: 'Store',
   components: {
-    Product
+    Product,
+    NavBar
   },
   data() {
     return {
