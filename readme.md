@@ -2,7 +2,7 @@
  
 ### Endpoints documentation
 
-[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=OwInteractiveEndpointsDocumentation&uri=https%3A%2F%2Fraw.githubusercontent.com%2FGabrielncosta%2Fdesafio-backend-node%2Fmaster%2Fcode%2FInsomniaExport.json)
+[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=OwInteractive&uri=https%3A%2F%2Fraw.githubusercontent.com%2FGabrielncosta%2Fdesafio-backend-node%2Fmaster%2Fcode%2Fbackend%2FInsomniaExport.json)
 
 ## Getting Started
 
