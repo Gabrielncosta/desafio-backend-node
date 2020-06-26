@@ -4,10 +4,10 @@ const Sale = use('App/Models/Sale')
 const SalesProduct = use('App/Models/SalesProduct')
 
 class SaleController {
-  async index ({ auth }) {
-    const sales = await Sale.query().with('salesProduct').fetch()
+  async index () {
+    const products = await SalesProduct.query().with('product').fetch()
 
-    return sales
+    return products
   }
 
   async store ({ request, response, auth }) {
@@ -16,14 +16,14 @@ class SaleController {
       const sale = await Sale.create({ user_id: auth.user.id })
 
       const salesProduct = await SalesProduct.create(
-        { ...data, sales_id: sale.id })
+        { ...data, sale_id: sale.id })
 
       await salesProduct.save()
       await sale.save()
 
       return [sale, salesProduct]
     } catch (err) {
-      return response.send({ error: { message: 'A compra falhou, verfique seu' + err } })
+      return response.send({ error: { message: 'A compra falhou, verfique seus dados.' } })
     }
   }
 

@@ -4,19 +4,19 @@ const SalesProduct = use('App/Models/SalesProduct')
 
 class SalesProductController {
   async index ({ params, auth }) {
-    console.log(params)
     const salesProduct = await SalesProduct.query()
-      .where('sales_id', params.sales_id)
+      .with('product')
       .fetch()
-
     return salesProduct
   }
 
   async show ({ params, auth }) {
-    console.log(params)
-    const product = await Product.findOrFail(params.id)
+    const salesProduct = await SalesProduct.query()
+      .where('sale_id', params.sales_id)
+      .with('product')
+      .fetch()
 
-    return product
+    return salesProduct
   }
 
   async update ({ params, request }) {

@@ -3,12 +3,13 @@
 const Route = use('Route')
 
 Route.get('users', 'UserController.index')
-Route.post('users', 'UserController.store')
+Route.post('users', 'UserController.store').validator('User')
 Route.get('/users/:id', 'UserController.show')
 
-Route.post('sessions', 'SessionController.store')
-Route.post('passwords', 'ForgotPasswordController.store')
-Route.put('passwords', 'ForgotPasswordController.update')
+Route.post('sessions', 'SessionController.store').validator('session')
+
+Route.post('passwords', 'ForgotPasswordController.store').validator('ForgotPassword')
+Route.put('passwords', 'ForgotPasswordController.update').validator('ResetPassword')
 
 Route.get('/files/', 'FileController.index')
 Route.get('/files/:id', 'FileController.show')

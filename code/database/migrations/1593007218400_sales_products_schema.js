@@ -8,7 +8,7 @@ class SalesProductsSchema extends Schema {
     this.create('sales_products', (table) => {
       table.increments()
       table
-        .integer('sales_id')
+        .integer('sale_id')
         .unsigned()
         .notNullable()
         .references('id')
