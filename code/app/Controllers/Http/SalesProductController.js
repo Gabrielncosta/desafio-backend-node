@@ -39,11 +39,9 @@ class SalesProductController {
 
   async destroy ({ params, response }) {
     try {
-      const product = await Product.findOrFail(params.id)
-
       const salesProduct = SalesProduct.query().where('product_id', params.id)
 
-      await product.delete()
+      await salesProduct.delete()
     } catch (err) {
       return response.send({ error: { message: 'Um produto com vendas em andamento não pode ser excluido' } })
     }

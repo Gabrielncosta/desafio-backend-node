@@ -5,9 +5,9 @@ const SalesProduct = use('App/Models/SalesProduct')
 
 class SaleController {
   async index () {
-    const products = await SalesProduct.query().with('product').fetch()
+    const sales = await Sale.query().orderBy('created_at').with('salesProduct').with('product').fetch()
 
-    return products
+    return sales
   }
 
   async store ({ request, response, auth }) {
@@ -23,7 +23,7 @@ class SaleController {
 
       return [sale, salesProduct]
     } catch (err) {
-      return response.send({ error: { message: 'A compra falhou, verfique seus dados.' } })
+      return response.status(400).send({ error: { message: 'A compra falhou, verfique seus dados.' + err } })
     }
   }
 

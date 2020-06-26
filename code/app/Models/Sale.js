@@ -12,6 +12,10 @@ class Sale extends Model {
     return this.belongsTo('App/Models/User')
   }
 
+  product () {
+    return this.manyThrough('App/Models/SalesProduct', 'product')
+  }
+
   salesProduct () {
     return this.hasMany('App/Models/SalesProduct')
   }

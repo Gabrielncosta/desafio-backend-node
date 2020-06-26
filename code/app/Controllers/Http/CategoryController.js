@@ -46,7 +46,7 @@ class CategoryController {
     if (!product.length) {
       await category.delete()
     } else {
-      return response.send({ error: { message: 'Uma categoria com produtos não pode ser excluida' } })
+      return response.status(400).send({ error: { message: 'Uma categoria com produtos não pode ser excluida' } })
     }
   }
 }
